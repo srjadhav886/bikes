@@ -41,7 +41,7 @@ export default function MyBookings() {
               <thead>
                 <tr>
                   <th>Booking Id</th>
-                  <th>Car Name</th>
+                  <th>Bike Name</th>
                   <th>Posted Date</th>
                   <th>Price</th>
                   <th>From Date</th>

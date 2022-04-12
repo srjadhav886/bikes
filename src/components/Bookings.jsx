@@ -36,7 +36,7 @@ export default function Bookings() {
               <thead>
                 <tr>
                   <th>Booking Id</th>
-                  <th>Car Variant</th>
+                  <th>Bike Variant</th>
                   <th>Booking Date</th>
                   <th>User Name</th>
                   <th>Advance</th>
