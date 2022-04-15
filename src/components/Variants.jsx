@@ -62,23 +62,27 @@ const Variants = () => {
         formData.append("company_id", product.company_id)
         formData.append("price", product.price)
         console.log(product)
-        axios.post("/api/books", formData)
-        axios.post('http://localhost:8080/api/variants', formData)
-            .then(resp => {
-                toast.success(resp.data)
-                setProduct({
-                    "title": "",
-                    "company_id": "",
-                    "price": "",
-                    "photo": ""
+        if (product.title === '' || product.compname === '' || product.price === '') {
+            toast.error('Please provide required details')
+        }
+        else {
+            axios.post('http://localhost:8080/api/variants', formData)
+                .then(resp => {
+                    toast.success(resp.data)
+                    setProduct({
+                        "title": "",
+                        "company_id": "",
+                        "price": "",
+                        "photo": ""
+                    })
+                    setSelectedPhoto(null)
+                    setFile(null)
+                    loadData()
                 })
-                setSelectedPhoto(null)
-                setFile(null)
-                loadData()
-            })
-            .catch(error => {
-                toast.error(error)
-            })
+                .catch(error => {
+                    toast.error(error)
+                })
+        }
     }
     return (
         <>

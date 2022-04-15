@@ -35,15 +35,20 @@ const Companies = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/api/companies', { compname: company })
-            .then(resp => {
-                setCompany('')
-                toast.success(resp.data)
-                loadData()
-            })
-            .catch(error => {
-                toast.error(error)
-            })
+        if (company === '') {
+            toast.error('Please provide company name')
+        }
+        else {
+            axios.post('http://localhost:8080/api/companies', { compname: company })
+                .then(resp => {
+                    setCompany('')
+                    toast.success(resp.data)
+                    loadData()
+                })
+                .catch(error => {
+                    toast.error(error)
+                })
+        }
     }
 
     return (

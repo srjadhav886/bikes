@@ -34,19 +34,24 @@ const Bikes = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    axios.post('http://localhost:8080/api/bikes', bike)
-      .then(resp => {
-        toast.success(resp)
-        setBike({
-          "id": "",
-          "modelyear": "",
-          "varid": ""
+    if (bike.id === '' || bike.modelyear === '' || bike.varid === '') {
+      toast.error('Please provide required details')
+    }
+    else {
+      axios.post('http://localhost:8080/api/bikes', bike)
+        .then(resp => {
+          toast.success(resp.data)
+          setBike({
+            "id": "",
+            "modelyear": "",
+            "varid": ""
+          })
+          loadData()
         })
-        loadData()
-      })
-      .catch(error => {
-        toast.error(error)
-      })
+        .catch(error => {
+          toast.error(error)
+        })
+    }
   }
 
   const handleFilter = id => {

@@ -25,16 +25,21 @@ const Register = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(user)
-    axios.post('http://localhost:8080/api/customers', user)
-      .then(resp => {
-        console.log(resp.data)
-        toast.success(resp.data)
-        history.push("/login")
-      }).catch(error => {
-        console.log("Error", error.response)
-        toast.error(error.response.data)
-      })
+    if (user.pwd != user.cpwd) {
+      toast.error("Password not match with confirm")
+    }
+    else {
+      console.log(user)
+      axios.post('http://localhost:8080/api/customers', user)
+        .then(resp => {
+          console.log(resp.data)
+          toast.success(resp.data)
+          history.push("/login")
+        }).catch(error => {
+          console.log("Error", error.response)
+          toast.error(error.response.data)
+        })
+    }
   }
   return (
     <>
@@ -73,7 +78,7 @@ const Register = () => {
                                 <i className="fas fa-user-tie" />
                               </span>
                             </div>
-                            <input type="email" required placeholder="Email Id or User ID" name="userid" value={user.userid} onChange={handleInput} className="form-control" />
+                            <input type="email" required placeholder="Email Id " name="userid" value={user.userid} onChange={handleInput} className="form-control" />
                           </div>
                         </div>
                         <div className="form-group">
