@@ -8,7 +8,10 @@ const Register = () => {
   if (sessionStorage.getItem("userid") != null) {
     window.location = "/products"
   }
-
+  const [validatepassword, validatePassword] = useState(false);
+  const [validateemail, validateEmail] = useState(false);
+  const [validatemobilenumber, validateMobileNumber] = useState(false);
+  const [validatewarnings, removeWarnings] = useState(false);
   const history = useHistory()
   const [user, setUser] = useState({
     "uname": "",
@@ -23,8 +26,19 @@ const Register = () => {
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
+
+
+
+
   const handleSubmit = (e) => {
+
+
+
     e.preventDefault()
+    if (user.userid === "" || user.pwd === "" || user.uname === "") {
+      toast.error("Please fill all required fields")
+
+    }
     if (user.pwd != user.cpwd) {
       toast.error("Password not match with confirm")
     }
@@ -78,7 +92,8 @@ const Register = () => {
                                 <i className="fas fa-user-tie" />
                               </span>
                             </div>
-                            <input type="email" required placeholder="Email Id " name="userid" value={user.userid} onChange={handleInput} className="form-control" />
+                            <input type="email" id="email" placeholder="Email Id " name="userid" value={user.userid} onChange={handleInput} className="form-control " />
+                            <span style={{ color: 'red' }} id='emailVr'></span>
                           </div>
                         </div>
                         <div className="form-group">
@@ -88,7 +103,8 @@ const Register = () => {
                                 <i className="fas fa-key" />
                               </span>
                             </div>
-                            <input type="password" required name="pwd" value={user.pwd} onChange={handleInput} placeholder="Password" className="form-control" />
+                            <input type="password"
+                              required name="pwd" value={user.pwd} onChange={handleInput} placeholder="Password" className="form-control" />
                           </div>
                         </div>
                         <div className="form-group">

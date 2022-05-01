@@ -77,7 +77,7 @@ const Login = () => {
                                                                 <i className="fas fa-user-tie" />
                                                             </span>
                                                         </div>
-                                                        <input type="text" required placeholder="User ID here" name="userid" value={user.userid} onChange={handleInput} className="form-control" />
+                                                        <input type="text" required placeholder="Email ID here" name="userid" value={user.userid} onChange={handleInput} className="form-control" />
                                                     </div>
                                                 </div>
                                                 <div className="form-group">
